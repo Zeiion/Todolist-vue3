@@ -1,23 +1,70 @@
 <template>
-  <li>
+  <li @mouseenter="mouseHandler(true)" @mouseleave="mouseHandler(false)">
     <label>
-      <input type="checkbox" v-model="item.isCompleted" />
+      <input type="checkbox" v-model="isCompleted" />
       <span>{{ item.title }}</span>
     </label>
-    <button class="btn btn-danger" style="display: none">删除</button>
+    <button class="btn btn-danger" v-show="isshow" @click="delItem">
+      删除
+    </button>
   </li>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, computed, inject } from 'vue';
 import { item } from '@/types/item';
 
 export default defineComponent({
   name: 'Item',
   props: {
-    item: Object as () => item,
+    item: {
+      type: Object as () => item,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+    deleteItem: {
+      type: Function,
+      required: true,
+    },
+  },
+  setup(props) {
+    const isshow = ref(false);
+
+    const isCompleted = computed({
+      get() {
+        return props.item.isCompleted;
+      },
+      set(val) {},
+    });
+
+    const mouseHandler = (flag: boolean) => {
+      if (flag) {
+        isshow.value = true;
+      } else {
+        isshow.value = false;
+      }
+    };
+    // const inj = inject('deleteItem');
+    const delItem = () => {
+      if (window.confirm('sure?')) {
+        props.deleteItem(props.index);
+      }
+    };
+    return {
+      mouseHandler,
+      delItem,
+      isshow,
+      isCompleted,
+    };
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+ul li:hover {
+  background-color: antiquewhite;
+}
+</style>

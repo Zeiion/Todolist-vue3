@@ -1,6 +1,12 @@
 <template>
   <ul>
-    <Item v-for="item in items" :key="item.id" :item="item" />
+    <Item
+      v-for="(item, index) in items"
+      :key="item.id"
+      :item="item"
+      :index="index"
+      :deleteItem="deleteItem"
+    />
   </ul>
 </template>
 
@@ -10,7 +16,7 @@ import Item from './Item.vue';
 
 export default defineComponent({
   name: 'List',
-  props: ['items'],
+  props: ['items', 'deleteItem'],
   components: {
     Item,
   },
