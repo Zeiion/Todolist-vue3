@@ -48,3 +48,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.todo {
+  text-align: center;
+}
+</style>

@@ -64,7 +64,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
+ul li {
+  display: block;
+  border-radius: 13px;
+  padding: 18px 8px;
+  background-color: white;
+}
 ul li:hover {
-  background-color: antiquewhite;
+  background-color: whitesmoke;
+}
+.btn {
+  float: right;
 }
 </style>
