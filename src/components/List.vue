@@ -29,13 +29,20 @@ export default defineComponent({
 
 <style scoped>
 .todo-list {
+  width: 70%;
+  margin: 0 auto;
+  /* border: 1px solid black; */
   background-color: white;
-  margin-top: 40px;
+  margin-top: 20px;
+  padding: 5px;
 }
 .todo-list-part {
-  margin: 50px;
+  margin: 30px;
   padding: 10px;
-  border: 1px solid grey;
+  border: 1px solid rgb(230, 230, 230);
+  box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.26);
+  -webkit-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.26);
+  -moz-box-shadow: 0px 5px 5px 4px rgba(0, 0, 0, 0.26);
   border-radius: 13px;
 }
 ul {

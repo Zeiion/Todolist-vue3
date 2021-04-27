@@ -4,9 +4,13 @@
       <input type="checkbox" v-model="isCompleted" />
       <span>{{ item.title }}</span>
     </label>
-    <button class="btn btn-danger" v-show="isshow" @click="delItem">
-      删除
-    </button>
+    <el-button
+      type="danger"
+      icon="el-icon-delete"
+      class="btn"
+      v-show="isshow"
+      @click="delItem"
+    ></el-button>
   </li>
 </template>
 
@@ -65,15 +69,24 @@ export default defineComponent({
 
 <style scoped>
 ul li {
+  /* list-style-type: none; */
   display: block;
   border-radius: 13px;
   padding: 18px 8px;
   background-color: white;
+  overflow: hidden;
 }
 ul li:hover {
   background-color: whitesmoke;
 }
+ul li label {
+  margin-left: 10px;
+  float: left;
+  margin-top: 10px;
+}
 .btn {
+  margin-right: 10px;
   float: right;
+  font-size: 1px;
 }
 </style>

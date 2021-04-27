@@ -2,13 +2,14 @@
   <div class="header">
     <el-input
       type="text"
+      size=""
       placeholder="请输入内容"
       @keyup.enter="add"
       v-model="title"
       class="input-with-select"
     >
       <template #append>
-        <el-button icon="el-icon-enter"></el-button>
+        <el-button type="primary" icon="el-icon-edit" @click="add"></el-button>
       </template>
     </el-input>
   </div>
@@ -55,6 +56,11 @@ export default defineComponent({
   text-align: center;
 }
 .input-with-select {
-  width: 60%;
+  /* height: 30px !important; */
+  margin: 0px;
+  width: 45%;
+}
+div >>> .el-input > input {
+  height: 50px;
 }
 </style>
