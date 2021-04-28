@@ -8,6 +8,7 @@
           :item="item"
           :index="index"
           :deleteItem="deleteItem"
+          :updateComplete="updateComplete"
         />
       </ul>
     </div>
@@ -20,7 +21,7 @@ import Item from './Item.vue';
 
 export default defineComponent({
   name: 'List',
-  props: ['items', 'deleteItem'],
+  props: ['items', 'deleteItem', 'updateComplete'],
   components: {
     Item,
   },
@@ -46,6 +47,7 @@ export default defineComponent({
   border-radius: 13px;
 }
 ul {
+  min-height: 50px;
   border: 1px;
   border-radius: 13px;
   text-align: center;

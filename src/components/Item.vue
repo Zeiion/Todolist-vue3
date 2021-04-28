@@ -1,8 +1,12 @@
 <template>
-  <li @mouseenter="mouseHandler(true)" @mouseleave="mouseHandler(false)">
-    <label>
+  <li
+    @mouseenter="mouseHandler(true)"
+    @mouseleave="mouseHandler(false)"
+    @click="changeComplete"
+  >
+    <label style="margin-top:3px;margin-bottom:2px">
       <input type="checkbox" v-model="isCompleted" />
-      <span>{{ item.title }}</span>
+      <span :class="text">{{ item.title }}</span>
     </label>
     <el-button
       type="danger"
@@ -10,6 +14,7 @@
       class="btn"
       v-show="isshow"
       @click="delItem"
+      size="small"
     ></el-button>
   </li>
 </template>
@@ -33,15 +38,30 @@ export default defineComponent({
       type: Function,
       required: true,
     },
+    updateComplete: {
+      type: Function,
+      required: true,
+    },
   },
   setup(props) {
     const isshow = ref(false);
-
+    const text = ref('nnn');
+    const changeComplete = () => {
+      const v = isCompleted;
+      props.updateComplete(props.item, !v.value);
+      if (v.value == true) {
+        text.value = 'fff';
+      } else {
+        text.value = 'nnn';
+      }
+    };
     const isCompleted = computed({
       get() {
         return props.item.isCompleted;
       },
-      set(val) {},
+      set(val) {
+        props.updateComplete(props.item, val);
+      },
     });
 
     const mouseHandler = (flag: boolean) => {
@@ -58,10 +78,12 @@ export default defineComponent({
       }
     };
     return {
+      text,
       mouseHandler,
       delItem,
       isshow,
       isCompleted,
+      changeComplete,
     };
   },
 });
@@ -75,6 +97,7 @@ ul li {
   padding: 18px 8px;
   background-color: white;
   overflow: hidden;
+  cursor: pointer;
 }
 ul li:hover {
   background-color: whitesmoke;
@@ -82,11 +105,14 @@ ul li:hover {
 ul li label {
   margin-left: 10px;
   float: left;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 .btn {
   margin-right: 10px;
   float: right;
-  font-size: 1px;
+  max-height: 1px;
+}
+.fff {
+  text-decoration: line-through;
 }
 </style>
