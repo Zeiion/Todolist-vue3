@@ -1,7 +1,8 @@
 # Todolist
 
 It is a todo-list by Vue3 with little typescript.
-Maybe later or sooner I will update it.
+It is my first vue3 try as it has a lot of little problems to solve.
+I will update it later or sooner.
 
 ## Project setup
 ```
